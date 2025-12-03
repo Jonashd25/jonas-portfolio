@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hallo, ich bin Jonas Häusermann</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #7c3aed;
+      --accent-soft: rgba(124, 58, 237, 0.12);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --card-bg: #0b1220;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.7);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --link: #38bdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 35%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .navbar-inner {
+      max-width: 1120px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      backdrop-filter: blur(16px);
+      pointer-events: auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-logo-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f97316 0, #f97316 20%, #7c3aed 70%);
+      box-shadow: 0 0 30px rgba(124, 58, 237, 0.9);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #f97316, #7c3aed);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 13px;
+      background: radial-gradient(circle at 0 0, rgba(124, 58, 237, 0.25), transparent 55%);
+      color: var(--muted);
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      border-color: rgba(248, 250, 252, 0.7);
+      box-shadow: 0 10px 30px rgba(148, 163, 184, 0.25);
+    }
+
+    /* LAYOUT */
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 112px 20px 72px; /* Platz für Navbar */
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    /* REVEAL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HERO / TOP */
+    .hero {
+      min-height: calc(55vh - 72px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-tertiary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #f9fafb;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #f97316);
+      box-shadow: 0 16px 40px rgba(124, 58, 237, 0.7);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 22px 55px rgba(124, 58, 237, 0.9);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.7);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 22px 55px rgba(37, 99, 235, 0.9);
+    }
+
+    .btn-tertiary {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7);
+    }
+
+    .btn-tertiary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 22px 55px rgba(22, 163, 74, 0.9);
+    }
+
+    /* SECTION TITLES */
+    .section-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .section-header > div {
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    /* GENERIC CARD */
+    .card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at 0 0, rgba(124, 58, 237, 0.15), transparent 55%), var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 20px 20px 18px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* INLINE ABOUT BOX */
+    .about-inline {
+      margin-top: 16px;
+    }
+
+    .about-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 22px;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+
+    .about-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .about-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+    }
+
+    .about-value {
+      font-weight: 500;
+    }
+
+    .about-description {
+      margin-top: 6px;
+    }
+
+    /* TIMELINE = BISHERIGE PROJEKTE */
+    .timeline {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.12), transparent 55%), var(--card-bg);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 18px;
+      padding-block: 10px;
+      border-bottom: 1px dashed rgba(55, 65, 81, 0.7);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-time {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .timeline-role {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .timeline-company {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 3px;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .projects-main-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      transition: transform 0.18s ease, text-shadow 0.18s ease;
+      cursor: default;
+    }
+
+    .projects-main-title:hover {
+      transform: scale(1.03);
+      text-shadow: 0 0 18px rgba(148, 163, 184, 0.4);
+    }
+
+    /* LANGUAGES */
+    .languages-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 55%), var(--card-bg);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .lang-row {
+      margin-bottom: 12px;
+    }
+
+    .lang-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .lang-name {
+      font-weight: 500;
+    }
+
+    .lang-percent {
+      color: #9ca3af;
+      font-size: 12px;
+    }
+
+    .lang-bar-outer {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .lang-bar-inner {
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22c55e, #7c3aed);
+      transition: width 1s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .lang-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* HOBBIES */
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .hobby-card {
+      border-radius: 18px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at 0 0, rgba(124, 58, 237, 0.2), transparent 60%);
+      padding: 12px 12px 10px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-height: 80px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .hobby-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .hobby-title {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .hobby-text {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* CONTACT (INFO ONLY) */
+    .contact-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at 0 0, rgba(239, 68, 68, 0.18), transparent 55%), var(--card-bg);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .contact-row {
+      margin-bottom: 10px;
+    }
+
+    .contact-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #38bdf8;
+      margin-bottom: 2px;
+    }
+
+    .contact-value a {
+      color: #e5e7eb;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.7);
+      padding-bottom: 1px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .contact-value a:hover {
+      color: #38bdf8;
+      border-color: #38bdf8;
+    }
+
+    footer {
+      font-size: 11px;
+      color: #6b7280;
+      text-align: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 28px;
+    }
+
+    /* SCROLL TO TOP BUTTON */
+    .scroll-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(18px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      color: #e5e7eb;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 40;
+    }
+
+    .scroll-top-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-2px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .about-info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hobbies-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .navbar-inner {
+        padding-inline: 14px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .page {
+        padding-inline: 16px;
+      }
+
+      .timeline-item {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 26px;
+      }
+
+      .hobbies-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        <span>Jonas&nbsp;Häusermann</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#projects">Bisherige Projekte</a>
+        <a href="#about-block">Über mich</a>
+        <a href="#languages">Sprachen</a>
+        <a href="#hobbies">Hobbys</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+      <button class="nav-cta" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'});">
+        Portfolio ansehen
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO + ÜBER MICH -->
+    <section class="hero" id="top">
+      <div class="hero-left reveal">
+        <h1 class="hero-title">
+          Hallo, ich bin Jonas Häusermann
+        </h1>
+
+        <div class="card about-inline" id="about-block">
+          <h2 class="card-title">Über mich</h2>
+
+          <div class="about-info-grid">
+            <div class="about-row">
+              <span class="about-label">Name</span>
+              <span class="about-value">Jonas Gabriel Häusermann</span>
+            </div>
+            <div class="about-row">
+              <span class="about-label">Beruf</span>
+              <span class="about-value">Informatiker EFZ Plattformentwicklung (in Ausbildung)</span>
+            </div>
+            <div class="about-row">
+              <span class="about-label">Geburtstag</span>
+              <span class="about-value">16. Dezember 2006</span>
+            </div>
+            <div class="about-row">
+              <span class="about-label">Standort</span>
+              <span class="about-value">Rupperswil, Aargau</span>
+            </div>
+          </div>
+
+          <p class="card-text about-description">
+            Ich bin Jonas, 18 Jahre alt, aus Rupperswil im Aargau. Ich mache meine Lehre als Informatiker EFZ
+            Plattformentwicklung bei Swisscom und kann dort jeden Tag neue Erfahrungen mit Plattformen, IT Umgebungen
+            und moderner Technik sammeln. Mir ist wichtig, zuverlässig zu arbeiten, Verantwortung zu übernehmen und im
+            Team pragmatische Lösungen zu finden. Neben der Informatik bin ich gerne aktiv: Ich spiele Schlagzeug in
+            einer Band, gehe klettern und wandern und bin im Winter auf Ski oder Snowboard unterwegs. Ausserdem lerne
+            ich gerne Neues und entwickle mich Schritt für Schritt weiter.
+          </p>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'});">
+            Bisherige Projekte ansehen
+          </button>
+          <button class="btn-secondary" onclick="document.getElementById('languages').scrollIntoView({behavior:'smooth'});">
+            Sprachen und Hobbys
+          </button>
+          <button class="btn-tertiary" onclick="window.location.href='Jonas-Personal.html';">
+            Das bin ich
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BISHERIGE PROJEKTE (TIMELINE) -->
+    <section id="projects">
+      <div class="section-header reveal">
+        <div>
+          <h2 class="section-title">Bisherige Projekte</h2>
+        </div>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-time">Seit 2. Aug 2024</div>
+          <div>
+            <div class="timeline-role">Lehre als Informatiker EFZ Plattformentwicklung</div>
+            <div class="timeline-company">Swisscom</div>
+            <p class="timeline-desc">
+              Start meiner beruflichen Laufbahn in der Informatik. Aufbau von Grundlagen in
+              Betriebssystemen, Plattformen und modernen IT Umgebungen sowie erste Einsätze in
+              verschiedenen Bereichen des Unternehmens.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Aug 2024 bis Feb 2025</div>
+          <div>
+            <div class="timeline-role">Caxlex Fieldservice</div>
+            <div class="timeline-company">Praxis Einsatz in der Lehre</div>
+            <p class="timeline-desc">
+              Unterstützung im IT Fieldservice: Geräte vorbereiten, ausliefern, installieren und
+              Benutzerinnen und Benutzer bei Problemen helfen. Direkter Kontakt mit Kunden und viel Praxis im
+              Lösen von alltäglichen IT Themen.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Feb 2025 bis Mai 2025</div>
+          <div>
+            <div class="timeline-role">Event Management / Netzwerk Management</div>
+            <div class="timeline-company">Praxis Einsatz in der Lehre</div>
+            <p class="timeline-desc">
+              Mitarbeit bei Events und Netzwerkaufbau: Vorbereitung von Technik, Unterstützung beim
+              Aufbau und Abbau sowie Betreuung der grundlegenden Netzwerkinfrastruktur für
+              reibungslose Abläufe.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Mai 2025 bis Jan 2026</div>
+          <div>
+            <div class="timeline-role">Mac Workplace</div>
+            <div class="timeline-company">Praxis Einsatz in der Lehre</div>
+            <p class="timeline-desc">
+              Arbeit mit macOS Arbeitsplätzen: Unterstützung der Benutzerinnen und Benutzer, Pflege der Geräte
+              und Mitarbeit beim Aufbau einer stabilen Apple Umgebung im Unternehmen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section id="languages">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-title">Sprachkenntnisse</p>
+        </div>
+      </div>
+
+      <div class="languages-card reveal" id="languagesCard">
+        <div class="lang-row">
+          <div class="lang-header">
+            <span class="lang-name">Schweizerdeutsch</span>
+            <span class="lang-percent">100%</span>
+          </div>
+          <div class="lang-bar-outer">
+            <div class="lang-bar-inner" data-percent="100"></div>
+          </div>
+        </div>
+
+        <div class="lang-row">
+          <div class="lang-header">
+            <span class="lang-name">Deutsch</span>
+            <span class="lang-percent">100%</span>
+          </div>
+          <div class="lang-bar-outer">
+            <div class="lang-bar-inner" data-percent="100"></div>
+          </div>
+        </div>
+
+        <div class="lang-row">
+          <div class="lang-header">
+            <span class="lang-name">Englisch</span>
+            <span class="lang-percent">75%</span>
+          </div>
+          <div class="lang-bar-outer">
+            <div class="lang-bar-inner" data-percent="75"></div>
+          </div>
+        </div>
+
+        <div class="lang-row">
+          <div class="lang-header">
+            <span class="lang-name">Portugiesisch</span>
+            <span class="lang-percent">50%</span>
+          </div>
+          <div class="lang-bar-outer">
+            <div class="lang-bar-inner" data-percent="50"></div>
+          </div>
+        </div>
+
+        <p class="lang-note">
+          Ich verfüge ausserdem über ein B2 Zertifikat in Englisch.
+        </p>
+      </div>
+    </section>
+
+    <!-- HOBBIES -->
+    <section id="hobbies">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-title">Hobbys</p>
+        </div>
+      </div>
+
+      <div class="hobbies-grid reveal">
+        <div class="hobby-card">
+          <div class="hobby-title">Schlagzeug in einer Band</div>
+          <div class="hobby-text">
+            Musik ist mir wichtig, besonders das Zusammenspiel im Band Kontext und Auftritte.
+          </div>
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-title">Klettern</div>
+          <div class="hobby-text">
+            Klettern verbindet für mich Technik, Konzentration und körperliche Herausforderung.
+          </div>
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-title">Wandern</div>
+          <div class="hobby-text">
+            In der Natur unterwegs zu sein hilft mir, den Kopf frei zu bekommen und neue Energie zu tanken.
+          </div>
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-title">Ski und Snowboard</div>
+          <div class="hobby-text">
+            Im Winter bin ich gerne auf der Piste, sowohl auf Ski als auch auf dem Snowboard.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (INFO ONLY) -->
+    <section id="contact">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-title">Kontaktinformationen</p>
+        </div>
+      </div>
+
+      <div class="contact-card reveal">
+        <div class="contact-row">
+          <div class="contact-label">E Mail</div>
+          <div class="contact-value">
+            <a href="mailto:Jonas.haeusermann@swisscom.com">Jonas.haeusermann@swisscom.com</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-label">Telefonnummer</div>
+          <div class="contact-value">
+            <a href="tel:+41795658496">079 565 84 96</a>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        © <span id="year"></span> Jonas Häusermann. Portfolio für Bewerbungen und Einblicke in meine Ausbildung.
+      </footer>
+    </section>
+  </main>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Nach oben scrollen">↑</button>
+
+  <script>
+    // Scroll Reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Languages bar animation
+    const languagesCard = document.getElementById('languagesCard');
+    const langObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bars = languagesCard.querySelectorAll('.lang-bar-inner');
+          bars.forEach(bar => {
+            const percent = bar.getAttribute('data-percent');
+            bar.style.width = percent + '%';
+          });
+          langObserver.unobserve(languagesCard);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    if (languagesCard) {
+      langObserver.observe(languagesCard);
+    }
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 280) {
+        scrollTopBtn.classList.add('scroll-top-visible');
+      } else {
+        scrollTopBtn.classList.remove('scroll-top-visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
