@@ -2,25 +2,25 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Hallo, ich bin Jonas Häusermann</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <title>Helvetic AI Assist — Schweizer AI-Agency für Anrufannahme & Terminmanagement</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --accent: #7c3aed;
-      --accent-soft: rgba(124, 58, 237, 0.12);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --card-bg: #0b1220;
-      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.7);
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --link: #38bdf8;
+      --bg: #05070f;
+      --bg-soft: #0b1220;
+      --card: #10182a;
+      --accent: #3b82f6;
+      --accent-strong: #2563eb;
+      --accent-warm: #f59e0b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.2);
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --max: 1200px;
     }
 
     * {
@@ -29,17 +29,14 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 35%, #000 100%);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--text);
+      background: radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.18), transparent 45%),
+        radial-gradient(circle at 80% 0%, rgba(245, 158, 11, 0.14), transparent 40%),
+        var(--bg);
+      line-height: 1.6;
       min-height: 100vh;
-      line-height: 1.5;
-      overflow-x: hidden;
     }
 
     a {
@@ -47,51 +44,44 @@
       text-decoration: none;
     }
 
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 50;
-      padding: 16px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .navbar-inner {
-      max-width: 1120px;
-      width: 100%;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 7, 15, 0.7);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.15);
-      backdrop-filter: blur(16px);
-      pointer-events: auto;
+      padding: 20px 0;
     }
 
-    .nav-logo {
+    .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      letter-spacing: 0.07em;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       font-size: 13px;
-      color: var(--muted);
     }
 
-    .nav-logo-dot {
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #f97316 0, #f97316 20%, #7c3aed 70%);
-      box-shadow: 0 0 30px rgba(124, 58, 237, 0.9);
+    .logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.95), rgba(245, 158, 11, 0.9));
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
     }
 
     .nav-links {
@@ -103,7 +93,7 @@
 
     .nav-links a {
       position: relative;
-      padding: 4px 0;
+      padding-bottom: 4px;
     }
 
     .nav-links a::after {
@@ -111,11 +101,10 @@
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #f97316, #7c3aed);
-      border-radius: 999px;
-      transition: width 0.25s ease;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+      transition: width 0.2s ease;
     }
 
     .nav-links a:hover::after {
@@ -123,765 +112,579 @@
     }
 
     .nav-cta {
-      padding: 6px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      border: 1px solid rgba(255, 255, 255, 0.16);
       font-size: 13px;
-      background: radial-gradient(circle at 0 0, rgba(124, 58, 237, 0.25), transparent 55%);
-      color: var(--muted);
-      cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      font-weight: 600;
+      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.45);
     }
 
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      border-color: rgba(248, 250, 252, 0.7);
-      box-shadow: 0 10px 30px rgba(148, 163, 184, 0.25);
-    }
-
-    /* LAYOUT */
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 112px 20px 72px; /* Platz für Navbar */
-    }
-
-    section {
-      padding: 72px 0;
-    }
-
-    /* REVEAL ANIMATION */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-    }
-
-    .reveal-active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* HERO / TOP */
     .hero {
-      min-height: calc(55vh - 72px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 28px;
+      padding: 90px 0 70px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 48px;
+      align-items: center;
     }
 
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
     }
 
-    .hero-title {
-      font-size: clamp(30px, 4vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.04em;
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 28px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 8px;
     }
 
-    .btn-primary,
-    .btn-secondary,
-    .btn-tertiary {
-      padding: 10px 18px;
+    .btn {
+      padding: 12px 18px;
       border-radius: 999px;
-      font-size: 14px;
       border: 1px solid transparent;
-      cursor: pointer;
-      transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        border-color 0.15s ease,
-        background 0.15s ease;
+      font-size: 14px;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: #f9fafb;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #7c3aed, #f97316);
-      box-shadow: 0 16px 40px rgba(124, 58, 237, 0.7);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 22px 55px rgba(124, 58, 237, 0.9);
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.5);
     }
 
     .btn-secondary {
-      background: linear-gradient(135deg, #0ea5e9, #2563eb);
-      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.7);
+      background: rgba(148, 163, 184, 0.14);
+      border-color: rgba(148, 163, 184, 0.3);
     }
 
-    .btn-secondary:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 22px 55px rgba(37, 99, 235, 0.9);
-    }
-
-    .btn-tertiary {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7);
-    }
-
-    .btn-tertiary:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 22px 55px rgba(22, 163, 74, 0.9);
-    }
-
-    /* SECTION TITLES */
-    .section-header {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 28px;
-    }
-
-    .section-header > div {
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-    }
-
-    /* GENERIC CARD */
-    .card {
-      border-radius: var(--radius-lg);
-      background: radial-gradient(circle at 0 0, rgba(124, 58, 237, 0.15), transparent 55%), var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 20px 20px 18px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
-    }
-
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .card-text {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    /* INLINE ABOUT BOX */
-    .about-inline {
-      margin-top: 16px;
-    }
-
-    .about-info-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px 22px;
-      margin-bottom: 14px;
-      font-size: 14px;
-    }
-
-    .about-row {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .about-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #9ca3af;
-    }
-
-    .about-value {
-      font-weight: 500;
-    }
-
-    .about-description {
-      margin-top: 6px;
-    }
-
-    /* TIMELINE = BISHERIGE PROJEKTE */
-    .timeline {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.12), transparent 55%), var(--card-bg);
-      padding: 16px 18px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 140px minmax(0, 1fr);
-      gap: 18px;
-      padding-block: 10px;
-      border-bottom: 1px dashed rgba(55, 65, 81, 0.7);
-    }
-
-    .timeline-item:last-child {
-      border-bottom: none;
-    }
-
-    .timeline-time {
-      font-size: 12px;
-      color: #9ca3af;
-    }
-
-    .timeline-role {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .timeline-company {
-      font-size: 12px;
-      color: #9ca3af;
-      margin-bottom: 3px;
-    }
-
-    .timeline-desc {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .projects-main-title {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      transition: transform 0.18s ease, text-shadow 0.18s ease;
-      cursor: default;
-    }
-
-    .projects-main-title:hover {
-      transform: scale(1.03);
-      text-shadow: 0 0 18px rgba(148, 163, 184, 0.4);
-    }
-
-    /* LANGUAGES */
-    .languages-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 55%), var(--card-bg);
-      padding: 18px 18px 16px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .lang-row {
-      margin-bottom: 12px;
-    }
-
-    .lang-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      margin-bottom: 4px;
-    }
-
-    .lang-name {
-      font-weight: 500;
-    }
-
-    .lang-percent {
-      color: #9ca3af;
-      font-size: 12px;
-    }
-
-    .lang-bar-outer {
-      width: 100%;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-    }
-
-    .lang-bar-inner {
-      height: 100%;
-      width: 0;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #22c55e, #7c3aed);
-      transition: width 1s cubic-bezier(0.33, 1, 0.68, 1);
-    }
-
-    .lang-note {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    /* HOBBIES */
-    .hobbies-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .hobby-card {
-      border-radius: 18px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: radial-gradient(circle at 0 0, rgba(124, 58, 237, 0.2), transparent 60%);
-      padding: 12px 12px 10px;
-      font-size: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-height: 80px;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-    }
-
-    .hobby-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
-    }
-
-    .hobby-title {
-      font-weight: 600;
-      font-size: 13px;
-    }
-
-    .hobby-text {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* CONTACT (INFO ONLY) */
-    .contact-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at 0 0, rgba(239, 68, 68, 0.18), transparent 55%), var(--card-bg);
-      padding: 18px 18px 16px;
-      box-shadow: var(--shadow-soft);
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .contact-row {
-      margin-bottom: 10px;
-    }
-
-    .contact-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: #38bdf8;
-      margin-bottom: 2px;
-    }
-
-    .contact-value a {
-      color: #e5e7eb;
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(148, 163, 184, 0.7);
-      padding-bottom: 1px;
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-
-    .contact-value a:hover {
-      color: #38bdf8;
-      border-color: #38bdf8;
-    }
-
-    footer {
-      font-size: 11px;
-      color: #6b7280;
-      text-align: center;
-      padding-top: 12px;
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
-      margin-top: 28px;
-    }
-
-    /* SCROLL TO TOP BUTTON */
-    .scroll-top {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(18px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 18px;
-      color: #e5e7eb;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 40;
-    }
-
-    .scroll-top-visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
-    }
-
-    .scroll-top:hover {
+    .btn:hover {
       transform: translateY(-2px);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .about-info-grid {
-        grid-template-columns: minmax(0, 1fr);
+    .hero-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(16, 24, 42, 0.92));
+      padding: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metric strong {
+      font-size: 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 3vw, 34px);
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 740px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pill {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #cbd5f5;
+      font-size: 13px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .process {
+      display: grid;
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .process-step {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .process-step span {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: rgba(59, 130, 246, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .pricing-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      pointer-events: none;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 12px 0;
+    }
+
+    .price span {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .list {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta-banner {
+      margin-top: 60px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(15, 23, 42, 0.95));
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cta-banner p {
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .faq-item {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    footer {
+      padding: 40px 0 50px;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
       }
 
-      .hobbies-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .grid-3 {
+        grid-template-columns: 1fr;
       }
 
-      .navbar-inner {
-        padding-inline: 14px;
+      .grid-2 {
+        grid-template-columns: 1fr;
       }
 
       .nav-links {
         display: none;
       }
-
-      .page {
-        padding-inline: 16px;
-      }
-
-      .timeline-item {
-        grid-template-columns: minmax(0, 1fr);
-      }
     }
 
     @media (max-width: 600px) {
-      .hero-title {
-        font-size: 26px;
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
       }
 
-      .hobbies-grid {
-        grid-template-columns: minmax(0, 1fr);
+      .btn {
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="navbar-inner">
-      <div class="nav-logo">
-        <div class="nav-logo-dot"></div>
-        <span>Jonas&nbsp;Häusermann</span>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-badge"></div>
+        Helvetic AI Assist
       </div>
       <nav class="nav-links">
-        <a href="#projects">Bisherige Projekte</a>
-        <a href="#about-block">Über mich</a>
-        <a href="#languages">Sprachen</a>
-        <a href="#hobbies">Hobbys</a>
+        <a href="#services">Leistungen</a>
+        <a href="#industries">Branchen</a>
+        <a href="#process">Vorgehen</a>
+        <a href="#security">Sicherheit</a>
+        <a href="#pricing">Preise</a>
         <a href="#contact">Kontakt</a>
       </nav>
-      <button class="nav-cta" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'});">
-        Portfolio ansehen
-      </button>
+      <a class="nav-cta" href="#contact">Demo sichern</a>
     </div>
   </header>
 
-  <main class="page">
-    <!-- HERO + ÜBER MICH -->
-    <section class="hero" id="top">
-      <div class="hero-left reveal">
-        <h1 class="hero-title">
-          Hallo, ich bin Jonas Häusermann
-        </h1>
-
-        <div class="card about-inline" id="about-block">
-          <h2 class="card-title">Über mich</h2>
-
-          <div class="about-info-grid">
-            <div class="about-row">
-              <span class="about-label">Name</span>
-              <span class="about-value">Jonas Gabriel Häusermann</span>
-            </div>
-            <div class="about-row">
-              <span class="about-label">Beruf</span>
-              <span class="about-value">Informatiker EFZ Plattformentwicklung (in Ausbildung)</span>
-            </div>
-            <div class="about-row">
-              <span class="about-label">Geburtstag</span>
-              <span class="about-value">16. Dezember 2006</span>
-            </div>
-            <div class="about-row">
-              <span class="about-label">Standort</span>
-              <span class="about-value">Rupperswil, Aargau</span>
-            </div>
-          </div>
-
-          <p class="card-text about-description">
-                                                                                           
-          Ich bin Jonas, 18 Jahre alt und komme aus Rupperswil im Aargau. 
-            Dies ist meine Website wo du alles über mich erfährst, Geschäftlich sowie Privat
-            Kurz über mich:
-  Zurzeit mache ich meine Lehre als Informatiker EFZ Plattformentwicklung 
-  bei Swisscom und bin im 2. Lehrjahr.
-          Ich arbeite gerne im Team, bin zuverlässig und übernehme Verantwortung, 
-  wenn es nötig ist. Mir liegt besonders das Lösen von komplexen Aufgaben: 
-  Ich analysiere Probleme Schritt für Schritt, probiere unterschiedliche 
-  Ansätze aus und finde dadurch kreative, aber praktische Lösungen.
-            Auf die
-          
-          </p>
-        </div>
-
-        <div class="hero-actions">
-          <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'});">
-            Bisherige Projekte ansehen
-          </button>
-          <button class="btn-secondary" onclick="document.getElementById('languages').scrollIntoView({behavior:'smooth'});">
-            Sprachen und Hobbys
-          </button>
-          <button class="btn-tertiary" onclick="window.location.href='Jonas-Personal.html';">
-            Das bin ich
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- BISHERIGE PROJEKTE (TIMELINE) -->
-    <section id="projects">
-      <div class="section-header reveal">
-        <div>
-          <h2 class="section-title">Bisherige Projekte</h2>
-        </div>
-      </div>
-
-      <div class="timeline reveal">
-        <div class="timeline-item">
-          <div class="timeline-time">Seit 2. Aug 2024</div>
-          <div>
-            <div class="timeline-role">Lehre als Informatiker EFZ Plattformentwicklung</div>
-            <div class="timeline-company">Swisscom</div>
-            <p class="timeline-desc">
-              Start meiner beruflichen Laufbahn in der Informatik. Aufbau von Grundlagen in
-              Betriebssystemen, Plattformen und modernen IT Umgebungen sowie erste Einsätze in
-              verschiedenen Bereichen des Unternehmens.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">Aug 2024 bis Feb 2025</div>
-          <div>
-            <div class="timeline-role">Caxlex Fieldservice</div>
-            <div class="timeline-company">Praxis Einsatz in der Lehre</div>
-            <p class="timeline-desc">
-              Unterstützung im IT Fieldservice: Geräte vorbereiten, ausliefern, installieren und
-              Benutzerinnen und Benutzer bei Problemen helfen. Direkter Kontakt mit Kunden und viel Praxis im
-              Lösen von alltäglichen IT Themen.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">Feb 2025 bis Mai 2025</div>
-          <div>
-            <div class="timeline-role">Event Management / Netzwerk Management</div>
-            <div class="timeline-company">Praxis Einsatz in der Lehre</div>
-            <p class="timeline-desc">
-              Mitarbeit bei Events und Netzwerkaufbau: Vorbereitung von Technik, Unterstützung beim
-              Aufbau und Abbau sowie Betreuung der grundlegenden Netzwerkinfrastruktur für
-              reibungslose Abläufe.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">Mai 2025 bis Jan 2026</div>
-          <div>
-            <div class="timeline-role">Mac Workplace</div>
-            <div class="timeline-company">Praxis Einsatz in der Lehre</div>
-            <p class="timeline-desc">
-              Arbeit mit macOS Arbeitsplätzen: Unterstützung der Benutzerinnen und Benutzer, Pflege der Geräte
-              und Mitarbeit beim Aufbau einer stabilen Apple Umgebung im Unternehmen.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LANGUAGES -->
-    <section id="languages">
-      <div class="section-header reveal">
-        <div>
-          <p class="section-title">Sprachkenntnisse</p>
-        </div>
-      </div>
-
-      <div class="languages-card reveal" id="languagesCard">
-        <div class="lang-row">
-          <div class="lang-header">
-            <span class="lang-name">Schweizerdeutsch</span>
-            <span class="lang-percent">100%</span>
-          </div>
-          <div class="lang-bar-outer">
-            <div class="lang-bar-inner" data-percent="100"></div>
-          </div>
-        </div>
-
-        <div class="lang-row">
-          <div class="lang-header">
-            <span class="lang-name">Deutsch</span>
-            <span class="lang-percent">100%</span>
-          </div>
-          <div class="lang-bar-outer">
-            <div class="lang-bar-inner" data-percent="100"></div>
-          </div>
-        </div>
-
-        <div class="lang-row">
-          <div class="lang-header">
-            <span class="lang-name">Englisch</span>
-            <span class="lang-percent">75%</span>
-          </div>
-          <div class="lang-bar-outer">
-            <div class="lang-bar-inner" data-percent="75"></div>
-          </div>
-        </div>
-
-        <div class="lang-row">
-          <div class="lang-header">
-            <span class="lang-name">Portugiesisch</span>
-            <span class="lang-percent">50%</span>
-          </div>
-          <div class="lang-bar-outer">
-            <div class="lang-bar-inner" data-percent="50"></div>
-          </div>
-        </div>
-
-        <p class="lang-note">
-          Ich verfüge ausserdem über ein B2 Zertifikat in Englisch.
+  <main>
+    <section class="hero container">
+      <div>
+        <h1>Die Schweizer AI‑Agency, die Anrufe annimmt, Termine koordiniert und Fragen beantwortet.</h1>
+        <p>
+          Wir übernehmen Ihr Telefon rund um die Uhr, buchen, verschieben und stornieren Termine in Ihrem
+          System und beantworten Routinefragen in Schweizerdeutsch, Deutsch oder Englisch. So bleibt Ihr
+          Team fokussiert auf das Wesentliche.
         </p>
-      </div>
-    </section>
-
-    <!-- HOBBIES -->
-    <section id="hobbies">
-      <div class="section-header reveal">
-        <div>
-          <p class="section-title">Hobbys</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Kostenlose Demo anfordern</a>
+          <a class="btn btn-secondary" href="#pricing">Preise & Pakete</a>
+        </div>
+        <div class="pill-row">
+          <div class="pill">24/7 Erreichbarkeit</div>
+          <div class="pill">Hosting in der Schweiz</div>
+          <div class="pill">DSG & DSGVO-ready</div>
+          <div class="pill">CRM- & Kalender-Integrationen</div>
         </div>
       </div>
-
-      <div class="hobbies-grid reveal">
-        <div class="hobby-card">
-          <div class="hobby-title">Schlagzeug in einer Band</div>
-          <div class="hobby-text">
-            Musik ist mir wichtig, besonders das Zusammenspiel im Band Kontext und Auftritte.
+      <div class="hero-card">
+        <h3>Was Kund:innen sofort spüren</h3>
+        <p>Keine verpassten Anrufe, klare Terminplanung und messbar weniger Verwaltungsaufwand.</p>
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>+38%</strong>
+            <span>mehr erreichte Anrufe</span>
           </div>
-        </div>
-        <div class="hobby-card">
-          <div class="hobby-title">Klettern</div>
-          <div class="hobby-text">
-            Klettern verbindet für mich Technik, Konzentration und körperliche Herausforderung.
+          <div class="metric">
+            <strong>60 sek</strong>
+            <span>Ø Antwortzeit</span>
           </div>
-        </div>
-        <div class="hobby-card">
-          <div class="hobby-title">Wandern</div>
-          <div class="hobby-text">
-            In der Natur unterwegs zu sein hilft mir, den Kopf frei zu bekommen und neue Energie zu tanken.
+          <div class="metric">
+            <strong>95%</strong>
+            <span>korrekte Terminbuchungen</span>
           </div>
-        </div>
-        <div class="hobby-card">
-          <div class="hobby-title">Ski und Snowboard</div>
-          <div class="hobby-text">
-            Im Winter bin ich gerne auf der Piste, sowohl auf Ski als auch auf dem Snowboard.
+          <div class="metric">
+            <strong>5 Tage</strong>
+            <span>bis zum Live‑Betrieb</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT (INFO ONLY) -->
-    <section id="contact">
-      <div class="section-header reveal">
-        <div>
-          <p class="section-title">Kontaktinformationen</p>
-        </div>
-      </div>
-
-      <div class="contact-card reveal">
-        <div class="contact-row">
-          <div class="contact-label">E Mail</div>
-          <div class="contact-value">
-            <a href="mailto:Jonas.haeusermann@swisscom.com">Jonas.haeusermann@swisscom.com</a>
+    <section class="section" id="services">
+      <div class="container">
+        <h2 class="section-title">Leistungen für professionelle Telefon- & Terminprozesse</h2>
+        <p class="section-intro">
+          Unsere Agentur kombiniert Schweizer Servicequalität mit modernster Conversational-AI.
+          Jede Lösung wird individuell trainiert, abgestimmt auf Ihre Prozesse und Ihr Wording.
+        </p>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Anrufannahme & Routing</h3>
+            <p>Intelligente Begrüssung, Anliegen erkennen und nahtlos an Ihr Team oder System übergeben.</p>
+          </div>
+          <div class="card">
+            <h3>Terminmanagement</h3>
+            <p>Terminbuchungen, Verschiebungen und Stornos direkt in Ihrem Kalender, ohne Medienbruch.</p>
+          </div>
+          <div class="card">
+            <h3>Fragen beantworten</h3>
+            <p>FAQ, Öffnungszeiten, Statusabfragen oder Preisinfos – immer konsistent und aktuell.</p>
+          </div>
+          <div class="card">
+            <h3>Nachbearbeitung</h3>
+            <p>Automatische Notizen, CRM-Updates und Follow-ups für klare Prozesse im Backoffice.</p>
+          </div>
+          <div class="card">
+            <h3>Mehrsprachigkeit</h3>
+            <p>Schweizerdeutsch, Deutsch, Englisch oder Französisch – passend zu Ihrer Kundschaft.</p>
+          </div>
+          <div class="card">
+            <h3>Qualität & Analytics</h3>
+            <p>Dashboard mit Auswertungen zu Anrufen, Peak-Zeiten und Conversion‑Raten.</p>
           </div>
         </div>
-        <div class="contact-row">
-          <div class="contact-label">Telefonnummer</div>
-          <div class="contact-value">
-            <a href="tel:+41795658496">079 565 84 96</a>
+      </div>
+    </section>
+
+    <section class="section" id="industries">
+      <div class="container">
+        <h2 class="section-title">Ideal für dienstleistungsstarke Branchen</h2>
+        <p class="section-intro">Wir übernehmen den Erstkontakt, damit Ihre Expert:innen mehr Zeit für Kund:innen haben.</p>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Gesundheitswesen</h3>
+            <p>Praxis, Klinik oder Therapie: Termin- und Rückrufmanagement mit Datenschutzfokus.</p>
+          </div>
+          <div class="card">
+            <h3>Immobilien & Bau</h3>
+            <p>Besichtigungen koordinieren, Anfragen qualifizieren und Rückmeldungen automatisieren.</p>
+          </div>
+          <div class="card">
+            <h3>Kanzleien & Treuhand</h3>
+            <p>Diskrete Erstaufnahme, strukturierte Anliegen und automatische Protokollierung.</p>
+          </div>
+          <div class="card">
+            <h3>Werkstätten & Servicebetriebe</h3>
+            <p>Serviceaufträge erfassen, Ersatzfahrzeuge planen und Kunden proaktiv informieren.</p>
+          </div>
+          <div class="card">
+            <h3>Hotellerie & Gastro</h3>
+            <p>Reservierungen, Umbuchungen und Spezialwünsche in Echtzeit.</p>
+          </div>
+          <div class="card">
+            <h3>Business Services</h3>
+            <p>Mehr Erreichbarkeit für HR, IT, Beratungen oder Versicherungen.</p>
           </div>
         </div>
       </div>
+    </section>
 
-      <footer>
-        © <span id="year"></span> Jonas Häusermann. Portfolio für Bewerbungen und Einblicke in meine Ausbildung.
-      </footer>
+    <section class="section" id="process">
+      <div class="container">
+        <h2 class="section-title">In 3 Schritten live</h2>
+        <p class="section-intro">Von der Analyse bis zur Go‑Live‑Begleitung in weniger als einer Woche.</p>
+        <div class="process">
+          <div class="process-step">
+            <span>1</span>
+            <div>
+              <h3>Discovery & Setup</h3>
+              <p class="section-intro">Wir verstehen Ihre Prozesse, erstellen Dialogflows und definieren Eskalationsregeln.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <span>2</span>
+            <div>
+              <h3>Integration & Training</h3>
+              <p class="section-intro">Anbindung an Kalender/CRM, Training mit Ihren Daten und Qualitätssicherung.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <span>3</span>
+            <div>
+              <h3>Go‑Live & Monitoring</h3>
+              <p class="section-intro">24/7 Betrieb, laufende Optimierung und monatliche Insights.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="security">
+      <div class="container">
+        <h2 class="section-title">Schweizer Datenschutz & Sicherheit by Design</h2>
+        <p class="section-intro">
+          Wir arbeiten gemäss revidiertem DSG sowie auf Wunsch DSGVO-konform. Daten werden in der Schweiz
+          gehostet, verschlüsselt übertragen und rollenbasiert abgesichert.
+        </p>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Compliance & Hosting</h3>
+            <p>Schweizer Rechenzentren, Auftragsdatenverarbeitung, Audit-Logs und klare Zugriffskontrollen.</p>
+          </div>
+          <div class="card">
+            <h3>Transparenz</h3>
+            <p>Ihr Team behält jederzeit die Kontrolle. Eskalationen gehen automatisch an definierte Kontakte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <h2 class="section-title">Transparente Pakete für jedes Wachstum</h2>
+        <p class="section-intro">Alle Pakete inkl. Setup, Monitoring und persönlichem Schweizer Support.</p>
+        <div class="grid grid-3">
+          <div class="card pricing-card">
+            <h3>Starter</h3>
+            <p>Für kleine Teams mit klaren Prozessen.</p>
+            <div class="price">CHF 1'200 <span>/ Monat</span></div>
+            <div class="list">
+              <div>Bis 400 Gespräche</div>
+              <div>1 Integrationssystem</div>
+              <div>Standard-Dialogflows</div>
+            </div>
+          </div>
+          <div class="card pricing-card">
+            <h3>Scale</h3>
+            <p>Für wachsende Organisationen.</p>
+            <div class="price">CHF 2'800 <span>/ Monat</span></div>
+            <div class="list">
+              <div>Bis 1'200 Gespräche</div>
+              <div>Multi‑Kalender & CRM</div>
+              <div>Individuelle Workflows</div>
+            </div>
+          </div>
+          <div class="card pricing-card">
+            <h3>Enterprise</h3>
+            <p>Für grosse Volumen & komplexe Prozesse.</p>
+            <div class="price">Auf Anfrage</div>
+            <div class="list">
+              <div>Unlimitierte Gespräche</div>
+              <div>Dedizierte Infrastruktur</div>
+              <div>SLA & Compliance‑Pakete</div>
+            </div>
+          </div>
+        </div>
+        <div class="cta-banner">
+          <div>
+            <h3>Bereit für weniger Aufwand im Backoffice?</h3>
+            <p>Vereinbaren Sie ein persönliches Beratungsgespräch und erhalten Sie ein fixes Angebot.</p>
+          </div>
+          <a class="btn btn-primary" href="#contact">Termin sichern</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <h2 class="section-title">Häufige Fragen</h2>
+        <div class="grid">
+          <div class="faq-item">
+            <h3>Wie schnell ist die AI einsatzbereit?</h3>
+            <p class="section-intro">Typischerweise innerhalb von 5 Arbeitstagen – inklusive Training und Tests.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Kann die AI echte Mitarbeiter:innen ersetzen?</h3>
+            <p class="section-intro">Sie übernimmt Routine-Anrufe. Komplexe Fälle werden an Ihr Team eskaliert.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Welche Systeme können integriert werden?</h3>
+            <p class="section-intro">Microsoft 365, Google Workspace, CRM-Systeme sowie branchenspezifische Tools.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-title">Kontakt aufnehmen</h2>
+        <p class="section-intro">
+          Schreiben Sie uns oder buchen Sie eine Demo. Wir melden uns innerhalb von 24 Stunden.
+        </p>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Helvetic AI Assist</h3>
+            <p>Talstrasse 11 · 8001 Zürich</p>
+            <p>hello@helvetic-ai.ch · +41 44 555 12 34</p>
+            <div class="pill-row">
+              <div class="pill">Mo–Fr 08:00–18:30</div>
+              <div class="pill">Live-Demo in 30 Minuten</div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Demo anfordern</h3>
+            <p>Wir klären Ihren Bedarf und zeigen, wie wir Ihre Anrufe automatisieren.</p>
+            <div class="list">
+              <div>✔️ Prozessanalyse & Angebot</div>
+              <div>✔️ Testanrufe mit Ihrem Script</div>
+              <div>✔️ Go‑Live Plan innerhalb einer Woche</div>
+            </div>
+            <div style="margin-top: 18px;">
+              <a class="btn btn-primary" href="mailto:hello@helvetic-ai.ch">Jetzt Kontakt aufnehmen</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- SCROLL TO TOP -->
-  <button class="scroll-top" id="scrollTopBtn" aria-label="Nach oben scrollen">↑</button>
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> Helvetic AI Assist. Schweizer AI‑Agency für Telefon & Terminprozesse.</div>
+    </div>
+  </footer>
 
   <script>
-    // Scroll Reveal
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-active');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.16 });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // Languages bar animation
-    const languagesCard = document.getElementById('languagesCard');
-    const langObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bars = languagesCard.querySelectorAll('.lang-bar-inner');
-          bars.forEach(bar => {
-            const percent = bar.getAttribute('data-percent');
-            bar.style.width = percent + '%';
-          });
-          langObserver.unobserve(languagesCard);
-        }
-      });
-    }, { threshold: 0.4 });
-
-    if (languagesCard) {
-      langObserver.observe(languagesCard);
-    }
-
-    // Scroll to top button
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 280) {
-        scrollTopBtn.classList.add('scroll-top-visible');
-      } else {
-        scrollTopBtn.classList.remove('scroll-top-visible');
-      }
-    });
-
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
